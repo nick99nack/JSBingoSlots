@@ -1,2 +1,2 @@
 # JSBingoSlots
-Slingo-like game written in Javascript, HTML and CSS.
+Slingo-like game written in JavaScript, HTML and CSS.
