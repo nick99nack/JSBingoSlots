@@ -1,0 +1,266 @@
+/* @Project: JavaScript Slingo */
+
+/* @Author:  nick99nack */
+
+/* @Contact: spybob888 at aol dot com */
+
+/* @Created: 4:53 PM Tuesday, January 12, 2021 */
+
+#bg{
+		position:absolute;
+		top:0;
+		left:0;
+		z-index:-1;
+}
+
+/* Game Tiles */
+
+.cardcell{
+		position:absolute;
+		width: 53px;
+		height: 39px;
+		text-align:center;
+		font-family: "Times New Roman", Times, serif;
+		font-style: italic;
+		font-weight: bold;
+		font-size:31px;
+		padding-top:0px;
+		_padding-left:7px;
+}
+
+.cardcell:hover{
+	border: 2px solid red;
+	margin-top:-2px;
+	margin-left:-2px;
+	cursor:pointer
+}
+
+#A1{top:154; left:186}
+#A2{top:154; left:259}
+#A3{top:154; left:332}
+#A4{top:154; left:405}
+#A5{top:154; left:478}
+
+#B1{top:206; left:186}
+#B2{top:206; left:259}
+#B3{top:206; left:332}
+#B4{top:206; left:405}
+#B5{top:206; left:478}
+
+#C1{top:259; left:186}
+#C2{top:259; left:259}
+#C3{top:259; left:332}
+#C4{top:259; left:405}
+#C5{top:259; left:478}
+
+#D1{top:313; left:186}
+#D2{top:313; left:259}
+#D3{top:313; left:332}
+#D4{top:313; left:405}
+#D5{top:313; left:478}
+
+#E1{top:366; left:186}
+#E2{top:366; left:259}
+#E3{top:366; left:332}
+#E4{top:366; left:405}
+#E5{top:366; left:478}
+
+/* Slots */
+
+.slots{
+	position:absolute;
+	width: 58px;
+	height: 50px;
+	background-image:url('./img/blankslot.gif');
+	text-align:center;
+	font-family: "Times New Roman", Times, serif;
+	font-style: italic;
+	font-weight: bold;
+	font-size:40px;
+	padding-top:0px;
+	_padding-left:7px
+}
+
+#S1{top:424; left:187}
+#S2{top:424; left:260}
+#S3{top:424; left:333}
+#S4{top:424; left:406}
+#S5{top:424; left:479}
+
+/* buttons */
+
+#testbtn{
+	background-image:url('./img/startbtn_rect.gif');
+	width:80px;
+	height:25px;
+	display:none
+}
+#testbtn:active{
+	background-image:url('./img/startbtn_rect_down.gif');
+}
+
+#scoredisplay{
+	position:absolute;
+	top:82px;
+	left:34px;
+	width: 91px;
+	height:27px;
+	color:white;
+	text-align: center;
+	font-family: "Times New Roman", Times, serif;
+	font-style: italic;
+	font-size:22px;
+}
+
+#freespindisplay{
+	position:absolute;
+	top: 78px;
+	left: 568px;
+	width: 60px;
+	height: 26px;
+	color:white;
+	text-align: center;
+	font-family: "Times New Roman", Times, serif;
+	font-style: italic;
+	font-size:22px;
+}
+
+#bonuspntdisplay{
+	position:absolute;
+	top: 305px;
+	left: 326px;
+	width: 60px;
+	height: 26px;
+	color:white;
+	text-align: center;
+	font-family: "Times New Roman", Times, serif;
+	font-style: italic;
+	font-size:22px;
+	display:none;
+	z-index:5
+}
+
+#startspinbtn{
+	position:absolute;
+	top:255px;
+	left:575px;
+	width: 53px;
+	height:53px;
+	background-image:url('./img/takespin.gif');
+	display:none
+	
+}
+
+#startgamebtn{
+	position:absolute;
+	top:255px;
+	left:575px;
+	width: 53px;
+	height:53px;
+	background-image:url('./img/startbtn1.gif');
+	
+}
+
+#disabledspinbtn{
+	position:absolute;
+	top:255px;
+	left:575px;
+	width: 53px;
+	height:53px;
+	background-image:url('./img/spin.gif');
+	display:none;
+	
+}
+
+#yesbtn{
+	width:61px;
+	height:32px;
+	position:absolute;
+	top:432;
+	left:402;
+	background-image:url('./img/yesbtn.gif');
+}
+
+#nobtn{
+	width:61px;
+	height:32px;
+	position:absolute;
+	top:432;
+	left:471;
+	background-image:url('./img/nobtn.gif');
+}
+
+#yesbtn:active{ background-image:url('./img/yesbtn_down.gif') }
+#nobtn:active{ background-image:url('./img/nobtn_down.gif') }
+
+.questionelements{
+	display:none
+}
+
+#spindisplay{
+	position:absolute;
+	top:321px;
+	left:581px;
+	width: 39px;
+	height:39px;
+	color:white;
+	text-align: center;
+	font-family: "Times New Roman", Times, serif;
+	font-style: italic;
+	font-size:22px;
+}
+
+/* Slingos */
+.vertslingos{
+	background-image:url('./img/vert_bar.gif');
+	width:7px;
+	height:251px;
+	display:none
+}
+
+.horizslingos{
+	background-image:url('./img/horiz_bar.gif');
+	width:345px;
+	height:7px;
+	display:none
+}
+
+.diagslingos{
+	width:336px;
+	height:242px;
+	display:none
+}
+
+#slingo6{position:absolute; top:170; left:187}
+#slingo7{position:absolute; top:222; left:187}
+#slingo8{position:absolute; top:275; left:187}
+#slingo9{position:absolute; top:328; left:187}
+#slingo10{position:absolute; top:381; left:187}
+
+#slingo1{position:absolute; top:155; left:209}
+#slingo2{position:absolute; top:155; left:282}
+#slingo3{position:absolute; top:155; left:355}
+#slingo4{position:absolute; top:155; left:428}
+#slingo5{position:absolute; top:155; left:501}
+
+#slingo11{position:absolute; top:158; left:190; background-image:url('./img/diag_bar1.gif')}
+#slingo12{position:absolute; top:158; left:190; background-image:url('./img/diag_bar2.gif')}
+
+/* overlays */
+
+.overlay{
+	width:363px;
+	height:264px;
+	position:absolute;
+	top:146; 
+	left:178;
+	display:none
+}
+
+#freespinq{
+	position:absolute;
+	top:413;
+	left:186;
+	width:360px;
+	height:67px
+}

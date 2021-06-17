@@ -1,0 +1,305 @@
+/* @Project: Nick Higgins' Web Site Styles */
+/* @Author:  Nicholas Higgins */
+/* @Contact: spybob888@aol.com */
+/* @Created: 1:44 AM Tuesday, August 02, 2016 */
+/* @Modified: 3:02 AM Saturday, September 17, 2016 */
+
+/*RESET*/
+*{margin:0;padding:0;}body,html{width:100%;height:100%; color:#000;}body{font-size:9pt; font-family:Verdana, "DejaVu Sans", "Bitstream Vera Sans", Geneva,Arial,Helvetica,sans-serif;}
+*{line-height:1.1}
+ul{list-style-type:disc;margin-left:16px; _margin-left:23px}
+ol li{margin-left:16px; _margin-left:35px}
+body{background-color:#FFFBF0;}
+a, a:link, a:visited, a:active{color:#007;text-decoration:none;} a{cursor:pointer; color:#36f; text-decoration:none;} a:focus{outline:none;}a img{border:0}a:hover{color:#FF0000;text-decoration:underline;}
+#pageContainer{margin:0px auto;}
+/*END OF RESET*/
+
+/*MAIN STYLES*/
+#contentBox{
+	background-color: #ADEFFF;
+	border: 1px solid #333;
+	border-radius: 6px 6px 6px 6px;
+	-moz-border-radius: 6px 6px 6px 6px;
+	-webkit-border-radius: 6px 6px 6px 6px;
+	padding: 0 11px 0 11px;
+	width: 968px;
+	/*margin-left:10px;*/
+	margin:auto;
+	margin-top: 8px;
+}
+	
+	.post{
+	margin-top:0;
+	margin:12px 0pt}
+	
+.postTitleBar{
+	height:15px;
+	line-height:33px;
+	padding:5px;
+	font:14px Verdana;
+	font-weight:700;
+	color:black;
+	background-color:#EEE;
+	border: 1px solid black;
+	border-bottom:0;
+	border-radius: 6px 6px 0px 0px;
+	-moz-border-radius: 6px 6px 0px 0px;
+	-webkit-border-radius: 6px 6px 0px 0px;
+	/* behavior: url(/CSSPIE/PIE.htc); */
+	position:relative
+	}
+	
+.content{
+	background-color:rgb(255,255,255);
+	padding:15px 12px 15px 12px;
+	border: 1px solid black;
+	border-radius: 0px 0px 6px 6px;
+	-moz-border-radius: 0px 0px 6px 6px;
+	-webkit-border-radius: 0px 0px 6px 6px;
+	/* behavior: url(/CSSPIE/PIE.htc); */
+	position:relative
+	}
+
+.title{float:left}
+.topPost{margin-bottom:0; width:968px}
+.topPost .title{text-align:center; float:none;}
+.topPost .postTitleBar{padding-left:0; _text-align:center}
+
+#leftCol{
+	width:298px;
+	float:left;}
+	
+#rightCol{
+	width:660px;
+	margin-left:10px;
+	float:right}
+	
+.clear{height:1px; clear:both; _display:none}
+
+.hidden{display:none}
+	
+/*Old Navigation - For fallback purposes only*/
+
+#nav{list-style-type:none}
+#nav li{margin: 0 0 10px 0;}
+#nav h3{font-size:14px}
+
+/*End old navigation*/
+
+/*INLINE NAVIGATION*/
+#inlineNav{width:100%; font-size:9pt;}
+#inlineNav td{padding: 0 5px 0 5px; font-weight:bold; border-right:1px dotted black; _border-right:1px solid black;}
+
+/*END INLINE NAV*/
+
+blockquote{
+	font-style:italic;}
+	
+	
+/*IMAGE PRELOAD STYLES*/
+
+div#imgPreload{
+   position: absolute;
+   overflow: hidden;
+   left: -9999px; 
+   top: -9999px;
+   height: 1px;
+   width: 1px;
+}
+
+/*END IMAGE PRELOAD STYLES*/
+
+	
+/*GENERAL INFO SECTION*/	
+	
+div.generalInfo{width: 100%; _margin-bottom:-25px;}
+div.generalInfo div.giLeftColumn{width: 24.9%; float:left;}
+div.generalInfo div.giRightColumn{width: 74.9%; float:right;}
+
+div.giButtons{width: 100%; float:left }
+div.giButtons div.giButton{clear: left; width: 100%;}
+div.giButton a.stdBtn span.stdBtnMiddle{width: 122px}
+
+div.giUsername{width: 100%; font-weight: bold; line-height: 1.5;}
+div.giHeadline, div.giDescription{clear: left; width: 100%; line-height: 1.5;}
+div.giHeadline{font-weight: bold; margin-top: 20px; margin-bottom: 5px;}
+
+div.giLightRow, div.giDarkRow{width: 100%; padding: 5px 0px; height:18px}
+div.giLightRow{}
+div.giDarkRow{background-color: #eee;}
+div.giLightRow div.rowValue, div.giDarkRow div.rowValue{line-height: 1.5;}
+
+div.rowLabel{float:left; width: 29%; font-weight: bold;}
+div.rowValue{float:left; width: 70%;}
+	
+div.userTileLarge{background-color:#ccf;float:left;padding-bottom:0;border:1px solid #99f;}
+div.userTileLarge{padding:2px;}
+div.userTileLarge a.userProfilePictureLink{background-color:#000;overflow:hidden;display:block;border:1px solid #ccf;}
+div.userTileLarge a.userProfilePictureLink{width:131px;height:122px;}
+.userTileLarge{height:139px; margin-bottom:12px; _height:142px}
+
+a.stdBtn{display:block;float:left;height:21px !important;}
+a.stdBtn span,a.stdBtn img{display:block;float:left;clear:none;}
+.stdBtnMiddle{background-image:url('images/common/button_general_mid.gif');height:21px;padding:0 5px;background-repeat:repeat-x;background-position:top left;font-size:8pt;color:#000;font-weight:bold;text-align:center;text-transform:uppercase;line-height:21px;}
+.stdBtnLeft,.stdBtnLeft,.stdBtnRight,.stdBtnRight{width:3px;height:21px;background-repeat:no-repeat;background-position:top left;}
+.stdBtnLeft,.stdBtnLeft{background-image:url('images/common/button_general_lc.gif');}
+.stdBtnRight,.stdBtnRight{width:4px;background-image:url('images/common/button_general_rc.gif');}
+a.stdBtn:hover{text-decoration:none;}
+a.stdBtn:hover .stdBtnMiddle{background-image:url('images/common/button_general_mid_over.gif');}
+a.stdBtn:hover .stdBtnLeft, a.stdBtn:hover .stdBtnLeft{background-image:url('images/common/button_general_lc_over.gif');}
+a.stdBtn:hover .stdBtnRight, a.stdBtn:hover .stdBtnRight{background-image:url('images/common/button_general_rc_over.gif');}
+
+#statusIndicators{float:right}
+.userTileIcons{width:133px; _width:131px}
+#imoodStatus{float:left}
+
+
+/*END GENERAL INFO*/
+
+/*FAVORITE GAMES*/
+div.tileList{width:100%;}
+a.tileListItem{display:block;float:left;width:135px;height:135px;text-align:center;padding:5px; margin:0 0 10px 8px; color:#000;}
+a.tileListItem:hover{text-decoration:none;background-image:none;background-color:#c0e1ff; color:black}
+div.tileList a.tileListItem img,
+div.tileList a.tileListItem span{display:block;clear:both;}
+div.tileList a.tileListItem span{text-align:center;font-size:12px; margin-top:15px;}
+
+/*END FAVORITE GAMES*/
+
+#footer{text-align:center; padding-bottom:8px; width:968px; margin:auto}
+
+/*Styles for Internet Explorer 5 - Use separate stylesheet for all new work*/
+
+#IE5Wrap{text-align:center}
+#IE5Wrap #pageContainer *{text-align:left}
+#IE5Wrap #pageContainer .topPost .title{text-align:center}
+#IE5Wrap div.giButton a.stdBtn span.stdBtnMiddle{width:130px}
+#IE5Wrap #pageContainer #contentBox{width:1009px}
+
+/*End IE 5 styles*/
+
+/*Internet Explorer scrollbar styles*/
+body { 
+scrollbar-arrow-color: #FFFFFF;
+scrollbar-base-color: #7EC0E3;
+scrollbar-track-color: #DFE5E6;
+scrollbar-shadow-color: #7EC2E3;
+}
+/*End IE scrollbar styles*/
+
+.postDate{text-align:right; float:right;}
+
+/*Chrome scrollbar styles*/
+
+::-webkit-scrollbar { width: 16px; height: 3px}
+::-webkit-scrollbar-button {  background-color: #7EC0E3; height:16px }
+::-webkit-scrollbar-track {  background-color: #DFE5E6;}
+::-webkit-scrollbar-track-piece { background-color: #DFE5E6}
+::-webkit-scrollbar-thumb { height: 50px; background-color: #7EC0E3;
+border-right:1px solid black;
+border-bottom:1px solid black;
+background-image: url(/images/scrollbar.png);
+}
+
+::-webkit-scrollbar-button:vertical:decrement 
+{
+    background-image: url(/images/up.png);
+    /*background-position: 3px 4px;*/
+	background-repeat:no-repeat;
+	border-bottom:1px solid black
+}
+
+::-webkit-scrollbar-button:vertical:increment 
+{
+    background-image: url(/images/down.png);
+    /*background-position: 3px 4px;*/
+	background-repeat:no-repeat
+}
+
+::-webkit-scrollbar-button:vertical:decrement:active { background-image: url(/images/up-click.png); }
+
+::-webkit-scrollbar-button:vertical:increment:active { background-image: url(/images/down-click.png); }
+
+/*End Chrome Scrollbar Styles*/
+
+/*GOOGLE SEARCH BOX */
+
+/*Search Button*/
+#gsButton{
+font-weight:bold; 
+text-transform:uppercase;
+font-size:8pt;
+font-family:Verdana, "DejaVu Sans", "Bitstream Vera Sans" ,Geneva,Arial,Helvetica,sans-serif;
+padding:1px 6px;
+*padding:1px 0 0 0; /* For IE 6 and 7 */
+background-color: #FFFFCC
+}
+
+#gsButton:hover{background-color:#DCDCAB}
+/*End Search Button*/
+
+/*Layout*/
+#gsTable td{padding-bottom:5px}
+#searchBox{width:253px}
+/*End Layout*/
+
+/*END GOOGLE SEARCH BOX STYLES */
+
+/*WEATHERBUG WEATHER*/
+
+#weatherContainer{
+	width:248px;
+	height:248px;
+	overflow:hidden;
+	border:1px solid black;
+	border-radius: 6px 6px 6px 6px;
+	-moz-border-radius: 6px 6px 6px 6px;
+	-webkit-border-radius: 6px 6px 6px 6px;
+	/* behavior: url(/CSSPIE/PIE.htc); */
+	
+}
+
+#weatherapp{margin-top:-1px; margin-left:-1px}
+
+/*END WEATHERBUG WEATHER STYLES*/
+
+/*HTML5 AUDIO PLAYER*/
+
+.mediaPlayerButton{
+	display:block;
+	width:22px;
+	height:22px;
+	float:left
+}
+
+.playButton{background-image:url('./img/play.gif');}
+.playButton:hover{background-image:url('./img/playhover.gif')}
+.playButton:active{background-image:url('./img/playclick.gif')}
+
+.pauseButton{background-image:url('./img/pause.gif');}
+.pauseButton:hover{background-image:url('./img/pausehover.gif')}
+.pauseButton:active{background-image:url('./img/pauseclick.gif')}
+
+.stopButton{background-image:url('./img/stop.gif');}
+.stopButton:hover{background-image:url('./img/stophover.gif')}
+.stopButton:active{background-image:url('./img/stopclick.gif')}
+
+.playerControls{width:66px; background-color:#CECECE}
+
+.miniPlayer{width:72px; _display:none}
+.miniPlayer .content{padding:0; background-color:#CECECE}
+.miniPlayer .title{font-size:7pt; margin-top:-3px; color:white; margin-left:14px}
+.miniPlayer .postTitleBar{background-color:#AD052D}
+
+.audioPlayer{width:150px; _display:none}
+
+.audioPlayer .content{padding:0; background-color:#CECECE; text-align:left}
+.audioPlayer .title{font-size:10pt; margin-top:-2px; text-align:center; margin-left:20px; color:#FFFFFF}
+
+.audioPlayer .postTitleBar{height:10px; background-color:#AD052D}
+.audioPlayer .playerControls{margin-left:2px;}
+.audioPlayer .albumArtContainer{background-color:white; border-bottom:1px solid black;}
+.albumArt{margin-bottom:-2px}
+
+.infoTable{background-color:black; color:white; clear:both}
+.borderRow td{border-bottom:1px solid #808080}
