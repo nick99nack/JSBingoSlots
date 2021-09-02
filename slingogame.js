@@ -433,6 +433,7 @@ function gameReset() {
 	slingoexists = 0;
 	iscardfull = 0;
 	freespins = 0;
+	used_nums = [];
 	document.getElementById("freespindisplay").innerHTML = freespins;
 	document.getElementById("spindisplay").innerHTML = spin;
 	document.getElementById("disabledspinbtn").style.display = "none";
