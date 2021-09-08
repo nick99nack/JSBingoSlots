@@ -1,7 +1,7 @@
 /* @Project: JavaScript Slingo */
 /* @Author:  nick99nack */
 /* @Contact: spybob888 at aol dot com */
-/* @Modified: 10:48 PM Saturday, September 01, 2021 */
+/* @Modified: 10:35 AM Saturday, September 04, 2021 */
 
 var boardArray = new Array();
 boardArray[0] = new Array(0, 0, 0, 0, 0);
@@ -42,6 +42,7 @@ var iscardfull = 0;
 var freespins = 0;
 var tempnum = 0;
 var valid = 0;
+var game_end_called = 0;
 
 function newBoard() {
 	document.getElementById("gameover").style.display = "none";
@@ -376,6 +377,7 @@ function endGame(mode) {
 	/* Full Card */
 	if (mode == 1) {
 		setTimeout(function () {
+			game_end_called = 1;
 			var bonus = calcFCBonus(spin);
 			document.getElementById("startspinbtn").style.display = "none";
 			document.getElementById("fullcard").style.display = "block";
@@ -394,7 +396,7 @@ function endGame(mode) {
 			}, 5000)
 		}, 2500)
 
-	} else if (mode == 2) { /* Out of Spins */
+	} else if (mode == 2 && game_end_called == 0) { /* Out of Spins */
 		document.getElementById("startspinbtn").style.display = "none";
 		document.getElementById("startgamebtn").style.display = "block";
 		mPlay("gameover_snd");
@@ -434,6 +436,7 @@ function gameReset() {
 	iscardfull = 0;
 	freespins = 0;
 	used_nums = [];
+	game_end_called = 0;
 	document.getElementById("freespindisplay").innerHTML = freespins;
 	document.getElementById("spindisplay").innerHTML = spin;
 	document.getElementById("disabledspinbtn").style.display = "none";
