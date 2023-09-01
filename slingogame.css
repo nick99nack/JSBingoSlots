@@ -264,3 +264,17 @@
 	width:360px;
 	height:67px
 }
+
+#volumebtn {
+	width:28px;
+	height:27px;
+	position:absolute;
+	top:401;
+	left:64;
+	background-image:url('./img/volumeon.gif');
+}
+
+#volumebtn[off] {
+	background-image:url('./img/volumeoff.gif');
+}
+

@@ -43,6 +43,7 @@ var freespins = 0;
 var tempnum = 0;
 var valid = 0;
 var game_end_called = 0;
+var audioactive = true;
 
 function newBoard() {
 	document.getElementById("gameover").style.display = "none";
@@ -570,5 +571,18 @@ function freeSpinAnswer(val) {
 		document.getElementById("nobtn").style.display = "none";
 		document.getElementById("scoredisplay").innerHTML = score;
 		startNextSpin();
+	}
+}
+
+function toggleVolume() {
+	if (audioactive) {
+		// Finds all Audio in the document and mutes it, pretty cool right?
+		document.querySelectorAll("audio").forEach((audio) => audio.muted = true);
+		audioactive = false;
+		document.getElementById("volumebtn").setAttribute("off", "");
+	} else {
+		document.querySelectorAll("audio").forEach((audio) => audio.muted = false);
+		audioactive = true;
+		document.getElementById("volumebtn").removeAttribute("off");
 	}
 }
