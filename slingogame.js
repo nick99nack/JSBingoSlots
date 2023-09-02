@@ -465,7 +465,7 @@ function finalSpins() {
 			setTimeout(function () {
 				mPlay("scorereduce_snd");
 				score -= 500;
-				updateScoreDisplay(0);
+				updateScoreDisplay(1000, 0);
 				startNextSpin();
 
 			}, 1000)
@@ -485,7 +485,7 @@ function finalSpins() {
 			setTimeout(function () {
 				mPlay("scorereduce_snd");
 				score -= 1000;
-				updateScoreDisplay(0);
+				updateScoreDisplay(1000, 0);
 				startNextSpin();
 
 			}, 1000)
@@ -505,7 +505,7 @@ function finalSpins() {
 			setTimeout(function () {
 				mPlay("scorereduce_snd");
 				score -= 1500;
-				updateScoreDisplay(0);
+				updateScoreDisplay(1000, 0);
 				startNextSpin();
 
 			}, 1000)
@@ -525,7 +525,7 @@ function finalSpins() {
 			setTimeout(function () {
 				mPlay("scorereduce_snd");
 				score -= 2000;
-				updateScoreDisplay(0);
+				updateScoreDisplay(1000, 0);
 				startNextSpin();
 
 			}, 1000)
@@ -572,7 +572,7 @@ function freeSpinAnswer(val) {
 		document.getElementById("freespinq").style.display = "none";
 		document.getElementById("yesbtn").style.display = "none";
 		document.getElementById("nobtn").style.display = "none";
-		updateScoreDisplay()
+		updateScoreDisplay(1000, 0);
 		startNextSpin();
 	}
 }
