@@ -278,3 +278,6 @@
 	background-image:url('./img/volumeoff.gif');
 }
 
+[scoreoutline] {
+	outline: red solid 2px;
+}

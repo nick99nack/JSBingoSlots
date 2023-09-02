@@ -98,7 +98,7 @@ function takeSpin() {
 								document.getElementById("S" + (i + 1)).innerHTML = "";
 								document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/coinslot.gif')";
 								score += 1000;
-								document.getElementById("scoredisplay").innerHTML = score;
+								flashSlotAndScore(i+1); //?
 							} else {
 								mPlay("slot" + (i + 1) + "_snd");
 								document.getElementById("S" + (i + 1)).innerHTML = "";
@@ -112,7 +112,7 @@ function takeSpin() {
 									setTimeout(function () {
 										document.getElementById("devil").style.display = "none";
 										mPlay("scorereduce_snd");
-										document.getElementById("scoredisplay").innerHTML = score;
+										updateScoreDisplay();
 									}, 2500)
 
 								}, 1400)
@@ -125,7 +125,7 @@ function takeSpin() {
 								document.getElementById("S" + (i + 1)).innerHTML = "";
 								document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/coinslot.gif')";
 								score += 1000;
-								document.getElementById("scoredisplay").innerHTML = score;
+								flashSlotAndScore(i+1); ///?
 							} else {
 
 								mPlay("slot" + (i + 1) + "_snd");
@@ -155,14 +155,14 @@ function takeSpin() {
 							document.getElementById("S" + (i + 1)).innerHTML = "";
 							document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/coinslot.gif')";
 							score += 1000;
-							document.getElementById("scoredisplay").innerHTML = score;
+							flashSlotAndScore(i+1); ////?
 							mPlay("coin");
 						} else if (csmb > 4) {
 							mPlay("slot" + (i + 1) + "_snd");
 							document.getElementById("S" + (i + 1)).innerHTML = "";
 							document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/freespinslot.gif')";
 							freespins += 1
-							document.getElementById("freespindisplay").innerHTML = freespins;
+							flashSlotAndFreeSpins(i+1); /////?????
 							mPlay("freespin_snd");
 						} else if (num_devils >= max_devils) {
 							csmb = -1;
@@ -273,14 +273,14 @@ function scoring(col, row) {
 	}
 	if (slingoexists == 1) {
 		setTimeout(function () {
-			document.getElementById("scoredisplay").innerHTML = score;
+			updateScoreDisplay()
 			slingoexists = 0;
 			for (var j = 1; j < 13; j++) {
 				document.getElementById("slingo" + j).style.display = "none";
 			}
 		}, 2500)
 	} else {
-		document.getElementById("scoredisplay").innerHTML = score;
+		updateScoreDisplay()
 	}
 
 	if (slingos[0] + slingos[1] + slingos[2] + slingos[3] + slingos[4] + slingos[5] + slingos[6] + slingos[7] + slingos[8] + slingos[9] + slingos[10] + slingos[11] == -12) {
@@ -385,7 +385,7 @@ function endGame(mode) {
 			score += bonus;
 			document.getElementById("bonuspntdisplay").style.display = "block";
 			document.getElementById("bonuspntdisplay").innerHTML = bonus;
-			document.getElementById("scoredisplay").innerHTML = score;
+			updateScoreDisplay()
 			mPlay("fc_snd");
 			setTimeout(function () {
 				mPlay("gameover_snd");
@@ -462,7 +462,7 @@ function finalSpins() {
 			setTimeout(function () {
 				mPlay("scorereduce_snd");
 				score -= 500;
-				document.getElementById("scoredisplay").innerHTML = score;
+				updateScoreDisplay(0);
 				startNextSpin();
 
 			}, 1000)
@@ -482,7 +482,7 @@ function finalSpins() {
 			setTimeout(function () {
 				mPlay("scorereduce_snd");
 				score -= 1000;
-				document.getElementById("scoredisplay").innerHTML = score;
+				updateScoreDisplay(0);
 				startNextSpin();
 
 			}, 1000)
@@ -502,7 +502,7 @@ function finalSpins() {
 			setTimeout(function () {
 				mPlay("scorereduce_snd");
 				score -= 1500;
-				document.getElementById("scoredisplay").innerHTML = score;
+				updateScoreDisplay(0);
 				startNextSpin();
 
 			}, 1000)
@@ -522,7 +522,7 @@ function finalSpins() {
 			setTimeout(function () {
 				mPlay("scorereduce_snd");
 				score -= 2000;
-				document.getElementById("scoredisplay").innerHTML = score;
+				updateScoreDisplay(0);
 				startNextSpin();
 
 			}, 1000)
@@ -549,7 +549,7 @@ function startNextSpin() {
 function freeSpinAnswer(val) {
 	if (val == true) {
 		freespins -= 1;
-		document.getElementById("freespindisplay").innerHTML = freespins;
+		flashFreeSpins();
 		startNextSpin();
 		document.getElementById("freespinq").style.display = "none";
 		document.getElementById("yesbtn").style.display = "none";
@@ -569,7 +569,7 @@ function freeSpinAnswer(val) {
 		document.getElementById("freespinq").style.display = "none";
 		document.getElementById("yesbtn").style.display = "none";
 		document.getElementById("nobtn").style.display = "none";
-		document.getElementById("scoredisplay").innerHTML = score;
+		updateScoreDisplay()
 		startNextSpin();
 	}
 }
@@ -585,4 +585,44 @@ function toggleVolume() {
 		audioactive = true;
 		document.getElementById("volumebtn").removeAttribute("off");
 	}
+}
+
+function flashSlot(slotNumber, delay = 500) {
+	document.getElementById("S" + slotNumber).setAttribute("scoreoutline", "");
+	setTimeout(() => { 
+		document.getElementById("S" + slotNumber).removeAttribute("scoreoutline");
+	}, delay);
+}
+
+// [original game] flashed the points, and slot if you got a coin.
+function flashSlotAndScore(slotNumber) {
+	flashSlot(slotNumber);
+	updateScoreDisplay(500);
+}
+
+// [original game] flashed the free spins counter, and slot if you got a Free Spin.
+function flashSlotAndFreeSpins(slotNumber) {
+	flashSlot(slotNumber);
+	flashFreeSpins();
+}
+
+function flashFreeSpins(delay = 1000) {
+	document.getElementById("freespindisplay").innerHTML = freespins;
+	document.getElementById("freespindisplay").setAttribute("scoreoutline", "");
+	setTimeout(() => { 
+		document.getElementById("freespindisplay").removeAttribute("scoreoutline");
+	}, delay);
+}
+
+// [original game] flashed the free score counter for every new point you got.
+function updateScoreDisplay(interval = 800, delay = 500) {
+	// Usually you'd play the ding sound, then flash the score and play the coindrop sound. 
+	// But nick99nack has merged both sounds together, so this will do.
+	setTimeout(() => { 
+		document.getElementById("scoredisplay").innerHTML = score;
+		document.getElementById("scoredisplay").setAttribute("scoreoutline", "");
+		setTimeout(() => { 
+			document.getElementById("scoredisplay").removeAttribute("scoreoutline");
+		}, interval);
+	}, delay);
 }
