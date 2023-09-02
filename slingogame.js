@@ -637,3 +637,14 @@ function tryRestartGame() {
 		mPlay("invalid_snd");
 	}
 }
+
+function toggleRules() {
+	var btn = document.getElementById("rulesbtn");
+	if (btn.getAttribute("depressed") == null) {
+		btn.setAttribute("depressed", "");
+		document.getElementById("rulesframe").style.display = "block";
+	} else {
+		btn.removeAttribute("depressed");
+		document.getElementById("rulesframe").style.display = "none";
+	}
+}

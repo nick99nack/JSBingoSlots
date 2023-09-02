@@ -294,3 +294,16 @@
 #restartbtn:active {
 	background-image:url('./img/restartbtndepressed.gif');
 }
+
+#rulesbtn {
+	width:80px;
+	height:25px;
+	position:absolute;
+	top:327;
+	left:35;
+	background-image:url('./img/rulesbtn.gif');
+}
+
+#rulesbtn:active, #rulesbtn[depressed] {
+	background-image:url('./img/rulesbtndepressed.gif');
+}
