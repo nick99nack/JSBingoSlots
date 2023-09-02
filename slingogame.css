@@ -281,3 +281,16 @@
 [scoreoutline] {
 	outline: red solid 2px;
 }
+
+#restartbtn {
+	width:80px;
+	height:25px;
+	position:absolute;
+	top:364;
+	left:35;
+	background-image:url('./img/restartbtn.gif');
+}
+
+#restartbtn:active {
+	background-image:url('./img/restartbtndepressed.gif');
+}

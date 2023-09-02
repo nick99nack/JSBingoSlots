@@ -78,113 +78,115 @@ function takeSpin() {
 		for (var i = 0; i < 5; i++) {
 			(function (i) {
 				setTimeout(function () {
-					/* Reset */
+					if (valid) { // Since restart is now a thing you can do, I'll check for valid.
+						/* Reset */
 
-					activeJokerArray[i] = 0;
-					/* Generate numbers */
-					slotArray[i] = generateNum(min_nums[i] - 1, max_nums[i] + 4);
-					/* Check for Jokers*/
-					if (slotArray[i] > max_nums[i]) {
-						mPlay("slot" + (i + 1) + "_snd");
-						document.getElementById("S" + (i + 1)).innerHTML = "";
-						document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/jokerslot.gif')";
-						activeJokerArray[i] = 1;
-					} /* Devils, Cherubs, Coins, Free Spins */ else if (slotArray[i] < min_nums[i]) {
-						csmb = generateNum(0, 6);
-						if (csmb == 0 && num_devils < max_devils && active_devil != 1) {
-							if (spin == 1) { /* We can't have a dd on the first spin - give them a coin instead */
-								mPlay("slot" + (i + 1) + "_snd");
-								num_devils++;
-								document.getElementById("S" + (i + 1)).innerHTML = "";
-								document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/coinslot.gif')";
-								score += 1000;
-								flashSlotAndScore(i+1); //?
-							} else {
-								mPlay("slot" + (i + 1) + "_snd");
-								document.getElementById("S" + (i + 1)).innerHTML = "";
-								document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/devilslot.gif')";
-								num_devils++;
-								active_devil++;
-								score = score / 2;
-								setTimeout(function () {
-									document.getElementById("devil").style.display = "block";
-									mPlay("dd_snd");
+						activeJokerArray[i] = 0;
+						/* Generate numbers */
+						slotArray[i] = generateNum(min_nums[i] - 1, max_nums[i] + 4);
+						/* Check for Jokers*/
+						if (slotArray[i] > max_nums[i]) {
+							mPlay("slot" + (i + 1) + "_snd");
+							document.getElementById("S" + (i + 1)).innerHTML = "";
+							document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/jokerslot.gif')";
+							activeJokerArray[i] = 1;
+						} /* Devils, Cherubs, Coins, Free Spins */ else if (slotArray[i] < min_nums[i]) {
+							csmb = generateNum(0, 6);
+							if (csmb == 0 && num_devils < max_devils && active_devil != 1) {
+								if (spin == 1) { /* We can't have a dd on the first spin - give them a coin instead */
+									mPlay("slot" + (i + 1) + "_snd");
+									num_devils++;
+									document.getElementById("S" + (i + 1)).innerHTML = "";
+									document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/coinslot.gif')";
+									score += 1000;
+									flashSlotAndScore(i+1); //?
+								} else {
+									mPlay("slot" + (i + 1) + "_snd");
+									document.getElementById("S" + (i + 1)).innerHTML = "";
+									document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/devilslot.gif')";
+									num_devils++;
+									active_devil++;
+									score = score / 2;
 									setTimeout(function () {
-										document.getElementById("devil").style.display = "none";
-										mPlay("scorereduce_snd");
-										updateScoreDisplay();
-									}, 2500)
-
-								}, 1400)
-							}
-						} else if (csmb == 1 && num_devils < max_devils && active_devil != 1) {
-
-							if (spin == 1) { /* We can't have a csmb on the first spin - give them a coin instead */
-								mPlay("slot" + (i + 1) + "_snd");
-								num_devils++;
-								document.getElementById("S" + (i + 1)).innerHTML = "";
-								document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/coinslot.gif')";
-								score += 1000;
-								flashSlotAndScore(i+1); ///?
-							} else {
-
-								mPlay("slot" + (i + 1) + "_snd");
-								num_devils++;
-								active_devil++;
-								document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/devilslot.gif')";
-
-								setTimeout(function () {
-									document.getElementById("devil").style.display = "block";
-									mPlay("dd_snd");
-									setTimeout(function () {
-										document.getElementById("devil").style.display = "none";
-										document.getElementById("csmb").style.display = "block";
-										mPlay("csmb_snd");
-
+										document.getElementById("devil").style.display = "block";
+										mPlay("dd_snd");
 										setTimeout(function () {
-											document.getElementById("csmb").style.display = "none";
-										}, 3800)
+											document.getElementById("devil").style.display = "none";
+											mPlay("scorereduce_snd");
+											updateScoreDisplay();
+										}, 2500)
 
-									}, 2500)
+									}, 1400)
+								}
+							} else if (csmb == 1 && num_devils < max_devils && active_devil != 1) {
 
-								}, 1400)
+								if (spin == 1) { /* We can't have a csmb on the first spin - give them a coin instead */
+									mPlay("slot" + (i + 1) + "_snd");
+									num_devils++;
+									document.getElementById("S" + (i + 1)).innerHTML = "";
+									document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/coinslot.gif')";
+									score += 1000;
+									flashSlotAndScore(i+1); ///?
+								} else {
+
+									mPlay("slot" + (i + 1) + "_snd");
+									num_devils++;
+									active_devil++;
+									document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/devilslot.gif')";
+
+									setTimeout(function () {
+										document.getElementById("devil").style.display = "block";
+										mPlay("dd_snd");
+										setTimeout(function () {
+											document.getElementById("devil").style.display = "none";
+											document.getElementById("csmb").style.display = "block";
+											mPlay("csmb_snd");
+
+											setTimeout(function () {
+												document.getElementById("csmb").style.display = "none";
+											}, 3800)
+
+										}, 2500)
+
+									}, 1400)
+								}
+
+							} else if (csmb > 1 && csmb < 5) {
+								mPlay("slot" + (i + 1) + "_snd");
+								document.getElementById("S" + (i + 1)).innerHTML = "";
+								document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/coinslot.gif')";
+								score += 1000;
+								flashSlotAndScore(i+1); ////?
+								mPlay("coin");
+							} else if (csmb > 4) {
+								mPlay("slot" + (i + 1) + "_snd");
+								document.getElementById("S" + (i + 1)).innerHTML = "";
+								document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/freespinslot.gif')";
+								freespins += 1
+								flashSlotAndFreeSpins(i+1); /////?????
+								mPlay("freespin_snd");
+							} else if (num_devils >= max_devils) {
+								csmb = -1;
+								slotArray[i] = generateNum(min_nums[i], max_nums[i]);
+								mPlay("slot" + (i + 1) + "_snd");
+								document.getElementById("S" + (i + 1)).innerHTML = slotArray[i];
 							}
 
-						} else if (csmb > 1 && csmb < 5) {
-							mPlay("slot" + (i + 1) + "_snd");
-							document.getElementById("S" + (i + 1)).innerHTML = "";
-							document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/coinslot.gif')";
-							score += 1000;
-							flashSlotAndScore(i+1); ////?
-							mPlay("coin");
-						} else if (csmb > 4) {
-							mPlay("slot" + (i + 1) + "_snd");
-							document.getElementById("S" + (i + 1)).innerHTML = "";
-							document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/freespinslot.gif')";
-							freespins += 1
-							flashSlotAndFreeSpins(i+1); /////?????
-							mPlay("freespin_snd");
-						} else if (num_devils >= max_devils) {
-							csmb = -1;
-							slotArray[i] = generateNum(min_nums[i], max_nums[i]);
+
+						} else {
 							mPlay("slot" + (i + 1) + "_snd");
 							document.getElementById("S" + (i + 1)).innerHTML = slotArray[i];
 						}
-
-
-					} else {
-						mPlay("slot" + (i + 1) + "_snd");
-						document.getElementById("S" + (i + 1)).innerHTML = slotArray[i];
-					}
-					/* check to see if matches exist in each column */
-					for (row = 0; row < 5; row++) {
-						if ((boardArray[i][row] === slotArray[i] || activeJokerArray[i] == 1) && boardArray[i][row] != 0) {
-							unmatchedcols[i] = 1;
-							isspinactive = 1;
+						/* check to see if matches exist in each column */
+						for (row = 0; row < 5; row++) {
+							if ((boardArray[i][row] === slotArray[i] || activeJokerArray[i] == 1) && boardArray[i][row] != 0) {
+								unmatchedcols[i] = 1;
+								isspinactive = 1;
+							}
 						}
+
+
 					}
-
-
 				}, 310 * i);
 			})(i);
 
@@ -365,6 +367,7 @@ function startGame() {
 	mPlay("start_snd");
 	document.getElementById("startgamebtn").style.display = "none";
 	document.getElementById("startspinbtn").style.display = "block";
+	clearSlots();
 }
 
 function clearSlots() {
@@ -397,7 +400,7 @@ function endGame(mode) {
 			}, 5000)
 		}, 2500)
 
-	} else if (mode == 2 && game_end_called == 0) { /* Out of Spins */
+	} else if (mode == 2 && game_end_called == 0) { /* Out of Spins or Reset*/
 		document.getElementById("startspinbtn").style.display = "none";
 		document.getElementById("startgamebtn").style.display = "block";
 		mPlay("gameover_snd");
@@ -625,4 +628,12 @@ function updateScoreDisplay(interval = 800, delay = 500) {
 			document.getElementById("scoredisplay").removeAttribute("scoreoutline");
 		}, interval);
 	}, delay);
+}
+
+function tryRestartGame() {
+	if (valid) {
+		endGame(2);
+	} else {
+		mPlay("invalid_snd");
+	}
 }
