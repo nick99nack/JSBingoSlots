@@ -264,3 +264,46 @@
 	width:360px;
 	height:67px
 }
+
+#volumebtn {
+	width:28px;
+	height:27px;
+	position:absolute;
+	top:401;
+	left:64;
+	background-image:url('./img/volumeon.gif');
+}
+
+#volumebtn[off] {
+	background-image:url('./img/volumeoff.gif');
+}
+
+[scoreoutline] {
+	outline: red solid 2px;
+}
+
+#restartbtn {
+	width:80px;
+	height:25px;
+	position:absolute;
+	top:364;
+	left:35;
+	background-image:url('./img/restartbtn.gif');
+}
+
+#restartbtn:active {
+	background-image:url('./img/restartbtndepressed.gif');
+}
+
+#rulesbtn {
+	width:80px;
+	height:25px;
+	position:absolute;
+	top:327;
+	left:35;
+	background-image:url('./img/rulesbtn.gif');
+}
+
+#rulesbtn:active, #rulesbtn[depressed] {
+	background-image:url('./img/rulesbtndepressed.gif');
+}

@@ -43,6 +43,7 @@ var freespins = 0;
 var tempnum = 0;
 var valid = 0;
 var game_end_called = 0;
+var audioactive = true;
 
 function newBoard() {
 	document.getElementById("gameover").style.display = "none";
@@ -77,113 +78,115 @@ function takeSpin() {
 		for (var i = 0; i < 5; i++) {
 			(function (i) {
 				setTimeout(function () {
-					/* Reset */
+					if (valid) { // Since restart is now a thing you can do, I'll check for valid.
+						/* Reset */
 
-					activeJokerArray[i] = 0;
-					/* Generate numbers */
-					slotArray[i] = generateNum(min_nums[i] - 1, max_nums[i] + 4);
-					/* Check for Jokers*/
-					if (slotArray[i] > max_nums[i]) {
-						mPlay("slot" + (i + 1) + "_snd");
-						document.getElementById("S" + (i + 1)).innerHTML = "";
-						document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/jokerslot.gif')";
-						activeJokerArray[i] = 1;
-					} /* Devils, Cherubs, Coins, Free Spins */ else if (slotArray[i] < min_nums[i]) {
-						csmb = generateNum(0, 6);
-						if (csmb == 0 && num_devils < max_devils && active_devil != 1) {
-							if (spin == 1) { /* We can't have a dd on the first spin - give them a coin instead */
-								mPlay("slot" + (i + 1) + "_snd");
-								num_devils++;
-								document.getElementById("S" + (i + 1)).innerHTML = "";
-								document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/coinslot.gif')";
-								score += 1000;
-								document.getElementById("scoredisplay").innerHTML = score;
-							} else {
-								mPlay("slot" + (i + 1) + "_snd");
-								document.getElementById("S" + (i + 1)).innerHTML = "";
-								document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/devilslot.gif')";
-								num_devils++;
-								active_devil++;
-								score = score / 2;
-								setTimeout(function () {
-									document.getElementById("devil").style.display = "block";
-									mPlay("dd_snd");
+						activeJokerArray[i] = 0;
+						/* Generate numbers */
+						slotArray[i] = generateNum(min_nums[i] - 1, max_nums[i] + 4);
+						/* Check for Jokers*/
+						if (slotArray[i] > max_nums[i]) {
+							mPlay("slot" + (i + 1) + "_snd");
+							document.getElementById("S" + (i + 1)).innerHTML = "";
+							document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/jokerslot.gif')";
+							activeJokerArray[i] = 1;
+						} /* Devils, Cherubs, Coins, Free Spins */ else if (slotArray[i] < min_nums[i]) {
+							csmb = generateNum(0, 6);
+							if (csmb == 0 && num_devils < max_devils && active_devil != 1) {
+								if (spin == 1) { /* We can't have a dd on the first spin - give them a coin instead */
+									mPlay("slot" + (i + 1) + "_snd");
+									num_devils++;
+									document.getElementById("S" + (i + 1)).innerHTML = "";
+									document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/coinslot.gif')";
+									score += 1000;
+									flashSlotAndScore(i+1); //?
+								} else {
+									mPlay("slot" + (i + 1) + "_snd");
+									document.getElementById("S" + (i + 1)).innerHTML = "";
+									document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/devilslot.gif')";
+									num_devils++;
+									active_devil++;
+									score = score / 2;
 									setTimeout(function () {
-										document.getElementById("devil").style.display = "none";
-										mPlay("scorereduce_snd");
-										document.getElementById("scoredisplay").innerHTML = score;
-									}, 2500)
-
-								}, 1400)
-							}
-						} else if (csmb == 1 && num_devils < max_devils && active_devil != 1) {
-
-							if (spin == 1) { /* We can't have a csmb on the first spin - give them a coin instead */
-								mPlay("slot" + (i + 1) + "_snd");
-								num_devils++;
-								document.getElementById("S" + (i + 1)).innerHTML = "";
-								document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/coinslot.gif')";
-								score += 1000;
-								document.getElementById("scoredisplay").innerHTML = score;
-							} else {
-
-								mPlay("slot" + (i + 1) + "_snd");
-								num_devils++;
-								active_devil++;
-								document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/devilslot.gif')";
-
-								setTimeout(function () {
-									document.getElementById("devil").style.display = "block";
-									mPlay("dd_snd");
-									setTimeout(function () {
-										document.getElementById("devil").style.display = "none";
-										document.getElementById("csmb").style.display = "block";
-										mPlay("csmb_snd");
-
+										document.getElementById("devil").style.display = "block";
+										mPlay("dd_snd");
 										setTimeout(function () {
-											document.getElementById("csmb").style.display = "none";
-										}, 3800)
+											document.getElementById("devil").style.display = "none";
+											mPlay("scorereduce_snd");
+											updateScoreDisplay();
+										}, 2500)
 
-									}, 2500)
+									}, 1400)
+								}
+							} else if (csmb == 1 && num_devils < max_devils && active_devil != 1) {
 
-								}, 1400)
+								if (spin == 1) { /* We can't have a csmb on the first spin - give them a coin instead */
+									mPlay("slot" + (i + 1) + "_snd");
+									num_devils++;
+									document.getElementById("S" + (i + 1)).innerHTML = "";
+									document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/coinslot.gif')";
+									score += 1000;
+									flashSlotAndScore(i+1); ///?
+								} else {
+
+									mPlay("slot" + (i + 1) + "_snd");
+									num_devils++;
+									active_devil++;
+									document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/devilslot.gif')";
+
+									setTimeout(function () {
+										document.getElementById("devil").style.display = "block";
+										mPlay("dd_snd");
+										setTimeout(function () {
+											document.getElementById("devil").style.display = "none";
+											document.getElementById("csmb").style.display = "block";
+											mPlay("csmb_snd");
+
+											setTimeout(function () {
+												document.getElementById("csmb").style.display = "none";
+											}, 3800)
+
+										}, 2500)
+
+									}, 1400)
+								}
+
+							} else if (csmb > 1 && csmb < 5) {
+								mPlay("slot" + (i + 1) + "_snd");
+								document.getElementById("S" + (i + 1)).innerHTML = "";
+								document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/coinslot.gif')";
+								score += 1000;
+								flashSlotAndScore(i+1); ////?
+								mPlay("coin");
+							} else if (csmb > 4) {
+								mPlay("slot" + (i + 1) + "_snd");
+								document.getElementById("S" + (i + 1)).innerHTML = "";
+								document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/freespinslot.gif')";
+								freespins += 1
+								flashSlotAndFreeSpins(i+1); /////?????
+								mPlay("freespin_snd");
+							} else if (num_devils >= max_devils) {
+								csmb = -1;
+								slotArray[i] = generateNum(min_nums[i], max_nums[i]);
+								mPlay("slot" + (i + 1) + "_snd");
+								document.getElementById("S" + (i + 1)).innerHTML = slotArray[i];
 							}
 
-						} else if (csmb > 1 && csmb < 5) {
-							mPlay("slot" + (i + 1) + "_snd");
-							document.getElementById("S" + (i + 1)).innerHTML = "";
-							document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/coinslot.gif')";
-							score += 1000;
-							document.getElementById("scoredisplay").innerHTML = score;
-							mPlay("coin");
-						} else if (csmb > 4) {
-							mPlay("slot" + (i + 1) + "_snd");
-							document.getElementById("S" + (i + 1)).innerHTML = "";
-							document.getElementById("S" + (i + 1)).style.backgroundImage = "url('./img/freespinslot.gif')";
-							freespins += 1
-							document.getElementById("freespindisplay").innerHTML = freespins;
-							mPlay("freespin_snd");
-						} else if (num_devils >= max_devils) {
-							csmb = -1;
-							slotArray[i] = generateNum(min_nums[i], max_nums[i]);
+
+						} else {
 							mPlay("slot" + (i + 1) + "_snd");
 							document.getElementById("S" + (i + 1)).innerHTML = slotArray[i];
 						}
-
-
-					} else {
-						mPlay("slot" + (i + 1) + "_snd");
-						document.getElementById("S" + (i + 1)).innerHTML = slotArray[i];
-					}
-					/* check to see if matches exist in each column */
-					for (row = 0; row < 5; row++) {
-						if ((boardArray[i][row] === slotArray[i] || activeJokerArray[i] == 1) && boardArray[i][row] != 0) {
-							unmatchedcols[i] = 1;
-							isspinactive = 1;
+						/* check to see if matches exist in each column */
+						for (row = 0; row < 5; row++) {
+							if ((boardArray[i][row] === slotArray[i] || activeJokerArray[i] == 1) && boardArray[i][row] != 0) {
+								unmatchedcols[i] = 1;
+								isspinactive = 1;
+							}
 						}
+
+
 					}
-
-
 				}, 310 * i);
 			})(i);
 
@@ -272,14 +275,14 @@ function scoring(col, row) {
 	}
 	if (slingoexists == 1) {
 		setTimeout(function () {
-			document.getElementById("scoredisplay").innerHTML = score;
+			updateScoreDisplay()
 			slingoexists = 0;
 			for (var j = 1; j < 13; j++) {
 				document.getElementById("slingo" + j).style.display = "none";
 			}
 		}, 2500)
 	} else {
-		document.getElementById("scoredisplay").innerHTML = score;
+		updateScoreDisplay()
 	}
 
 	if (slingos[0] + slingos[1] + slingos[2] + slingos[3] + slingos[4] + slingos[5] + slingos[6] + slingos[7] + slingos[8] + slingos[9] + slingos[10] + slingos[11] == -12) {
@@ -364,6 +367,7 @@ function startGame() {
 	mPlay("start_snd");
 	document.getElementById("startgamebtn").style.display = "none";
 	document.getElementById("startspinbtn").style.display = "block";
+	clearSlots();
 }
 
 function clearSlots() {
@@ -384,7 +388,7 @@ function endGame(mode) {
 			score += bonus;
 			document.getElementById("bonuspntdisplay").style.display = "block";
 			document.getElementById("bonuspntdisplay").innerHTML = bonus;
-			document.getElementById("scoredisplay").innerHTML = score;
+			updateScoreDisplay()
 			mPlay("fc_snd");
 			setTimeout(function () {
 				mPlay("gameover_snd");
@@ -396,7 +400,7 @@ function endGame(mode) {
 			}, 5000)
 		}, 2500)
 
-	} else if (mode == 2 && game_end_called == 0) { /* Out of Spins */
+	} else if (mode == 2 && game_end_called == 0) { /* Out of Spins or Reset*/
 		document.getElementById("startspinbtn").style.display = "none";
 		document.getElementById("startgamebtn").style.display = "block";
 		mPlay("gameover_snd");
@@ -461,7 +465,7 @@ function finalSpins() {
 			setTimeout(function () {
 				mPlay("scorereduce_snd");
 				score -= 500;
-				document.getElementById("scoredisplay").innerHTML = score;
+				updateScoreDisplay(1000, 0);
 				startNextSpin();
 
 			}, 1000)
@@ -481,7 +485,7 @@ function finalSpins() {
 			setTimeout(function () {
 				mPlay("scorereduce_snd");
 				score -= 1000;
-				document.getElementById("scoredisplay").innerHTML = score;
+				updateScoreDisplay(1000, 0);
 				startNextSpin();
 
 			}, 1000)
@@ -501,7 +505,7 @@ function finalSpins() {
 			setTimeout(function () {
 				mPlay("scorereduce_snd");
 				score -= 1500;
-				document.getElementById("scoredisplay").innerHTML = score;
+				updateScoreDisplay(1000, 0);
 				startNextSpin();
 
 			}, 1000)
@@ -521,7 +525,7 @@ function finalSpins() {
 			setTimeout(function () {
 				mPlay("scorereduce_snd");
 				score -= 2000;
-				document.getElementById("scoredisplay").innerHTML = score;
+				updateScoreDisplay(1000, 0);
 				startNextSpin();
 
 			}, 1000)
@@ -548,7 +552,7 @@ function startNextSpin() {
 function freeSpinAnswer(val) {
 	if (val == true) {
 		freespins -= 1;
-		document.getElementById("freespindisplay").innerHTML = freespins;
+		flashFreeSpins();
 		startNextSpin();
 		document.getElementById("freespinq").style.display = "none";
 		document.getElementById("yesbtn").style.display = "none";
@@ -568,7 +572,79 @@ function freeSpinAnswer(val) {
 		document.getElementById("freespinq").style.display = "none";
 		document.getElementById("yesbtn").style.display = "none";
 		document.getElementById("nobtn").style.display = "none";
-		document.getElementById("scoredisplay").innerHTML = score;
+		updateScoreDisplay(1000, 0);
 		startNextSpin();
+	}
+}
+
+function toggleVolume() {
+	if (audioactive) {
+		// Finds all Audio in the document and mutes it, pretty cool right?
+		document.querySelectorAll("audio").forEach((audio) => audio.muted = true);
+		audioactive = false;
+		document.getElementById("volumebtn").setAttribute("off", "");
+	} else {
+		document.querySelectorAll("audio").forEach((audio) => audio.muted = false);
+		audioactive = true;
+		document.getElementById("volumebtn").removeAttribute("off");
+	}
+}
+
+function flashSlot(slotNumber, delay = 500) {
+	document.getElementById("S" + slotNumber).setAttribute("scoreoutline", "");
+	setTimeout(() => { 
+		document.getElementById("S" + slotNumber).removeAttribute("scoreoutline");
+	}, delay);
+}
+
+// [original game] flashed the points, and slot if you got a coin.
+function flashSlotAndScore(slotNumber) {
+	flashSlot(slotNumber);
+	updateScoreDisplay(500);
+}
+
+// [original game] flashed the free spins counter, and slot if you got a Free Spin.
+function flashSlotAndFreeSpins(slotNumber) {
+	flashSlot(slotNumber);
+	flashFreeSpins();
+}
+
+function flashFreeSpins(delay = 1000) {
+	document.getElementById("freespindisplay").innerHTML = freespins;
+	document.getElementById("freespindisplay").setAttribute("scoreoutline", "");
+	setTimeout(() => { 
+		document.getElementById("freespindisplay").removeAttribute("scoreoutline");
+	}, delay);
+}
+
+// [original game] flashed the free score counter for every new point you got.
+function updateScoreDisplay(interval = 800, delay = 500) {
+	// Usually you'd play the ding sound, then flash the score and play the coindrop sound. 
+	// But nick99nack has merged both sounds together, so this will do.
+	setTimeout(() => { 
+		document.getElementById("scoredisplay").innerHTML = score;
+		document.getElementById("scoredisplay").setAttribute("scoreoutline", "");
+		setTimeout(() => { 
+			document.getElementById("scoredisplay").removeAttribute("scoreoutline");
+		}, interval);
+	}, delay);
+}
+
+function tryRestartGame() {
+	if (valid) {
+		endGame(2);
+	} else {
+		mPlay("invalid_snd");
+	}
+}
+
+function toggleRules() {
+	var btn = document.getElementById("rulesbtn");
+	if (btn.getAttribute("depressed") == null) {
+		btn.setAttribute("depressed", "");
+		document.getElementById("rulesframe").style.display = "block";
+	} else {
+		btn.removeAttribute("depressed");
+		document.getElementById("rulesframe").style.display = "none";
 	}
 }
