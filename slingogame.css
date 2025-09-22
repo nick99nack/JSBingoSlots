@@ -1,15 +1,12 @@
 /* @Project: JavaScript Slingo */
-
 /* @Author:  nick99nack */
-
 /* @Contact: spybob888 at aol dot com */
-
 /* @Created: 4:53 PM Tuesday, January 12, 2021 */
 
 #bg{
 		position:absolute;
-		top:0;
-		left:0;
+		top:0px;
+		left:0px;
 		z-index:-1;
 }
 
@@ -35,35 +32,35 @@
 	cursor:pointer
 }
 
-#A1{top:154; left:186}
-#A2{top:154; left:259}
-#A3{top:154; left:332}
-#A4{top:154; left:405}
-#A5{top:154; left:478}
+#A1{top:154px; left:186px}
+#A2{top:154px; left:259px}
+#A3{top:154px; left:332px}
+#A4{top:154px; left:405px}
+#A5{top:154px; left:478px}
 
-#B1{top:206; left:186}
-#B2{top:206; left:259}
-#B3{top:206; left:332}
-#B4{top:206; left:405}
-#B5{top:206; left:478}
+#B1{top:206px; left:186px}
+#B2{top:206px; left:259px}
+#B3{top:206px; left:332px}
+#B4{top:206px; left:405px}
+#B5{top:206px; left:478px}
 
-#C1{top:259; left:186}
-#C2{top:259; left:259}
-#C3{top:259; left:332}
-#C4{top:259; left:405}
-#C5{top:259; left:478}
+#C1{top:259px; left:186px}
+#C2{top:259px; left:259px}
+#C3{top:259px; left:332px}
+#C4{top:259px; left:405px}
+#C5{top:259px; left:478px}
 
-#D1{top:313; left:186}
-#D2{top:313; left:259}
-#D3{top:313; left:332}
-#D4{top:313; left:405}
-#D5{top:313; left:478}
+#D1{top:313px; left:186px}
+#D2{top:313px; left:259px}
+#D3{top:313px; left:332px}
+#D4{top:313px; left:405px}
+#D5{top:313px; left:478px}
 
-#E1{top:366; left:186}
-#E2{top:366; left:259}
-#E3{top:366; left:332}
-#E4{top:366; left:405}
-#E5{top:366; left:478}
+#E1{top:366px; left:186px}
+#E2{top:366px; left:259px}
+#E3{top:366px; left:332px}
+#E4{top:366px; left:405px}
+#E5{top:366px; left:478px}
 
 /* Slots */
 
@@ -81,11 +78,11 @@
 	_padding-left:7px
 }
 
-#S1{top:424; left:187}
-#S2{top:424; left:260}
-#S3{top:424; left:333}
-#S4{top:424; left:406}
-#S5{top:424; left:479}
+#S1{top:424px; left:187px}
+#S2{top:424px; left:260px}
+#S3{top:424px; left:333px}
+#S4{top:424px; left:406px}
+#S5{top:424px; left:479px}
 
 /* buttons */
 
@@ -123,6 +120,18 @@
 	font-family: "Times New Roman", Times, serif;
 	font-style: italic;
 	font-size:22px;
+}
+
+#timerdisplay{
+	position:absolute;
+	top: 167px;
+	left: 572px;
+	width: 57px;
+	height: 20px;
+	color:white;
+	text-align: center;
+	font-family: "Times New Roman", Times, serif;
+	font-size:16px;
 }
 
 #bonuspntdisplay{
@@ -176,8 +185,8 @@
 	width:61px;
 	height:32px;
 	position:absolute;
-	top:432;
-	left:402;
+	top:432px;
+	left:402px;
 	background-image:url('./img/yesbtn.gif');
 }
 
@@ -185,8 +194,8 @@
 	width:61px;
 	height:32px;
 	position:absolute;
-	top:432;
-	left:471;
+	top:432px;
+	left:471px;
 	background-image:url('./img/nobtn.gif');
 }
 
@@ -231,20 +240,20 @@
 	display:none
 }
 
-#slingo6{position:absolute; top:170; left:187}
-#slingo7{position:absolute; top:222; left:187}
-#slingo8{position:absolute; top:275; left:187}
-#slingo9{position:absolute; top:328; left:187}
-#slingo10{position:absolute; top:381; left:187}
+#slingo6{position:absolute; top:170px; left:187px}
+#slingo7{position:absolute; top:222px; left:187px}
+#slingo8{position:absolute; top:275px; left:187px}
+#slingo9{position:absolute; top:328px; left:187px}
+#slingo10{position:absolute; top:381px; left:187px}
 
-#slingo1{position:absolute; top:155; left:209}
-#slingo2{position:absolute; top:155; left:282}
-#slingo3{position:absolute; top:155; left:355}
-#slingo4{position:absolute; top:155; left:428}
-#slingo5{position:absolute; top:155; left:501}
+#slingo1{position:absolute; top:155px; left:209px}
+#slingo2{position:absolute; top:155px; left:282px}
+#slingo3{position:absolute; top:155px; left:355px}
+#slingo4{position:absolute; top:155px; left:428px}
+#slingo5{position:absolute; top:155px; left:501px}
 
-#slingo11{position:absolute; top:158; left:190; background-image:url('./img/diag_bar1.gif')}
-#slingo12{position:absolute; top:158; left:190; background-image:url('./img/diag_bar2.gif')}
+#slingo11{position:absolute; top:158px; left:190px; background-image:url('./img/diag_bar1.gif')}
+#slingo12{position:absolute; top:158px; left:190px; background-image:url('./img/diag_bar2.gif')}
 
 /* overlays */
 
@@ -252,15 +261,15 @@
 	width:363px;
 	height:264px;
 	position:absolute;
-	top:146; 
-	left:178;
+	top:146px; 
+	left:178px;
 	display:none
 }
 
 #freespinq{
 	position:absolute;
-	top:413;
-	left:186;
+	top:413px;
+	left:186px;
 	width:360px;
 	height:67px
 }
@@ -269,8 +278,8 @@
 	width:28px;
 	height:27px;
 	position:absolute;
-	top:401;
-	left:64;
+	top:401px;
+	left:64px;
 	background-image:url('./img/volumeon.gif');
 }
 
@@ -286,8 +295,8 @@
 	width:80px;
 	height:25px;
 	position:absolute;
-	top:364;
-	left:35;
+	top:364px;
+	left:35px;
 	background-image:url('./img/restartbtn.gif');
 }
 
@@ -299,11 +308,13 @@
 	width:80px;
 	height:25px;
 	position:absolute;
-	top:327;
-	left:35;
+	top:327px;
+	left:35px;
 	background-image:url('./img/rulesbtn.gif');
 }
 
 #rulesbtn:active, #rulesbtn[depressed] {
 	background-image:url('./img/rulesbtndepressed.gif');
 }
+
+#rulesframe{ z-index: 100;}
